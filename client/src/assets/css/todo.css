@@ -1,0 +1,84 @@
+:root {
+  --main-color:#af7eeb;
+  --secondary-color: var(--bs-gray);
+  --main-color-subtle: #bd96ed;
+  --background-color: #e3e9ff;
+  --checkbox-size: 13px;
+}
+
+input {
+  outline:none!important;
+}
+
+.bg-main {
+  background-color:var(--main-color);
+}
+
+.bg-main:hover, .bg-main:focus {
+  background-color: var(--main-color-subtle)!important;
+}
+
+.text-main {
+  color: var(--main-color);
+}
+
+.border-main {
+  border-color:var(--main-color)!important;
+}
+
+.cursor-pointer {
+  cursor:pointer!important;
+}
+
+#root {
+  background-color:var(--background-color);
+}
+
+.todo {
+  width:400px;
+}
+
+.todo .todo-title {
+  height:50px;
+  background-color:var(--main-color);
+}
+
+.todo .tasks .task {
+  height:40px;
+}
+
+.todo .tasks .task .task-title {
+  text-decoration-color: var(--bs-gray-500)!important;
+}
+
+.todo .tasks .task .task-checkbox .checkbox {
+  width:var(--checkbox-size);
+  height:var(--checkbox-size);
+  cursor:pointer
+}
+
+.todo .tasks .task .task-checkbox input[type="checkbox"]:checked+.checkbox,
+.todo .tasks .task .task-checkbox input[type="checkbox"]+.checkbox:hover {
+  background-color:var(--main-color);
+}
+
+.todo .tasks .task .task-checkbox input[type="checkbox"]:checked+.checkbox:hover {
+  background-color: var(--bs-light);
+}
+
+.todo .tasks .task .task-delete {
+  transition:opacity .3s ease-in-out;
+}
+
+.todo .tasks .task:hover .task-delete {
+  opacity:1!important;
+}
+
+.todo .tasks .task .task-delete:hover {
+  color:var(--main-color)
+}
+
+.todo .add-task {
+  margin-top:-35px;
+  font-size:1.05em
+}
