@@ -16,7 +16,7 @@ export default class ToDo extends Component {
   }
 
   componentDidMount() {
-    fetch('http://192.168.1.50:2023/api/tasks')
+    fetch('http://localhost:2023/api/tasks')
       .then(response => response.json())
       .then(data => {
         this.setState({tasks: data, isLoading: false})
