@@ -5,7 +5,5 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './assets/css/todo.css'
 
 export default function App() {
-  return (
-    <ToDo />
-  )
+  return <ToDo />
 }

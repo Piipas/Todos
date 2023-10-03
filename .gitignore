@@ -1,8 +1,8 @@
 #Build
-server/build/
 client/build/
 
-#Modules
-server/node_modules/
-client/node_modules/
+#dependecies
+node_modules/
 
+#Environement
+.env

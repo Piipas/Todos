@@ -26,30 +26,28 @@ export default class ToDo extends Component {
       })
   }
 
-  taskCompleted = (taskId) => {
-    const task = this.state.tasks.find(task => task.id === Number(taskId));
-    if (task) {
-      axios.put(`http://localhost:2023/api/tasks/${taskId}`, {
-        title: task.title,
-        completed: !task.completed
-      }).then(response => {
-        this.setState({ tasks: response.data.data });
-      }).catch(err => {
-        console.error(err);
-      })
-    }
+  getTasks = _ => {
+    fetch('http://localhost:2023/api/tasks')
+      .then(response => response.json())
+      .then(data => this.setState({tasks: data, isLoading: false, addTask: false}))
+      .catch(error => console.log(error))
+  }
+
+  taskCompleted = (taskId, title, currentStatus) => {
+    axios.patch(`http://localhost:2023/api/tasks/${taskId}`, {
+      title: title,
+      completed: !currentStatus
+    })
+    .then(response => { this.getTasks(); })
+    .catch(error => console.error(error))
   }
 
   confirmTask = (title) => {
-    title = title.trim();
-    if (title.length) {
-      title = title[0].toUpperCase() + title.slice(1);
-      axios.post("http://localhost:2023/api/tasks", {
-        title
-      }).then(response => {
-        this.setState({ tasks: response.data.data, addTask: false });
-      })
-    }
+    axios.post('http://localhost:2023/api/tasks', {
+      title
+    })
+    .then(response => this.getTasks())
+    .catch(error => console.log(error));
   }
 
   abortTask = _ => {
@@ -61,15 +59,9 @@ export default class ToDo extends Component {
   }
 
   deleteTask = taskId => {
-    if (Number(taskId)) {
-      axios.delete(`http://localhost:2023/api/tasks/${taskId}`, {})
-        .then(response => {
-          this.setState({ tasks: response.data.data });
-        })
-        .catch(err => {
-          console.error(err);
-        })
-    }
+    axios.delete(`http://localhost:2023/api/tasks/${taskId}`)
+      .then(response => this.getTasks())
+      .catch(error => console.log(error));
   }
 
   render() {
